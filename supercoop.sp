@@ -525,8 +525,6 @@ public void OnPluginStart() {
   PrintToServer("[L4D2 Supercoop] exec l4d2_supercoop/start.cfg");
   ServerCommand("exec l4d2_supercoop/start");
   
-  ServerCommand("exec sourcemod/l4d2_supercoop.cfg");
-  
   CreateTimer(1.0, MapStart);
 }
 
@@ -2801,10 +2799,10 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
   float g_pos[3];
   GetClientEyePosition(client, g_pos);
   
-  char cvar_l4d2_ammo_nextbox[24];
-  l4d2_ammo_nextbox.GetString(cvar_l4d2_ammo_nextbox, sizeof(cvar_l4d2_ammo_nextbox));
+  char current_ammobox[24];
+  l4d2_ammo_nextbox.GetString(current_ammobox, sizeof(current_ammobox));
   
-  if (StrEqual(cvar_l4d2_ammo_nextbox, "random", false))
+  if (StrEqual(current_ammobox, "random", false))
   {	
     if (g_l4d2_ammo_chance > 0)
     {
@@ -2814,344 +2812,344 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
       float B = l4d2_ammochance_nothing.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "nothing";
+        current_ammobox = "nothing";
       }
       A = A + B;
       B = l4d2_ammochance_firebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "firebox";
+        current_ammobox = "firebox";
       }
       A = A + B;
       B = l4d2_ammochance_boombox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "boombox";
+        current_ammobox = "boombox";
       }
       A = A + B;
       B = l4d2_ammochance_freezebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "freezebox";
+        current_ammobox = "freezebox";
       }
       A = A + B;
       B = l4d2_ammochance_laserbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "laserbox";
+        current_ammobox = "laserbox";
       }
       A = A + B;
       B = l4d2_ammochance_medbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "medbox";
+        current_ammobox = "medbox";
       }
       A = A + B;
       B = l4d2_ammochance_nextbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "nextbox";
+        current_ammobox = "nextbox";
       }
       A = A + B;
       B = l4d2_ammochance_panicbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "panicbox";
+        current_ammobox = "panicbox";
       }
       A = A + B;
       B = l4d2_ammochance_witchbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "witchbox";
+        current_ammobox = "witchbox";
       }
       A = A + B;
       B = l4d2_ammochance_tankbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "tankbox";
+        current_ammobox = "tankbox";
       }
       A = A + B;
       B = l4d2_ammochance_bonusbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "bonusbox";
+        current_ammobox = "bonusbox";
       }
       A = A + B;
       B = l4d2_ammochance_hardbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "hardbox";
+        current_ammobox = "hardbox";
       }
       A = A + B;
       B = l4d2_ammochance_healbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "healbox";
+        current_ammobox = "healbox";
       }
       A = A + B;
       B = l4d2_ammochance_vomitbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "vomitbox";
+        current_ammobox = "vomitbox";
       }
       A = A + B;
       B = l4d2_ammochance_explosionbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "explosionbox";
+        current_ammobox = "explosionbox";
       }
       A = A + B;
       B = l4d2_ammochance_realismbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "realismbox";
+        current_ammobox = "realismbox";
       }
       A = A + B;
       B = l4d2_ammochance_bloodbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "bloodbox";
+        current_ammobox = "bloodbox";
       }
       A = A + B;
       B = l4d2_ammochance_icebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "icebox";
+        current_ammobox = "icebox";
       }
       A = A + B;
       B = l4d2_ammochance_expiredbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "expiredbox";
+        current_ammobox = "expiredbox";
       }
       A = A + B;
       B = l4d2_ammochance_deathbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "deathbox";
+        current_ammobox = "deathbox";
       }
       A = A + B;
       B = l4d2_ammochance_jackinthebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "jackinthebox";
+        current_ammobox = "jackinthebox";
       }
       A = A + B;
       B = l4d2_ammochance_jackpotbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "jackpotbox";
+        current_ammobox = "jackpotbox";
       }
       A = A + B;
       B = l4d2_ammochance_matrixbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "matrixbox";
+        current_ammobox = "matrixbox";
       }
       A = A + B;
       B = l4d2_ammochance_grenadebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "grenadebox";
+        current_ammobox = "grenadebox";
       }
       A = A + B;
       B = l4d2_ammochance_luckybox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "luckybox";
+        current_ammobox = "luckybox";
       }
       A = A + B;
       B = l4d2_ammochance_weaponbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "weaponbox";
+        current_ammobox = "weaponbox";
       }
       A = A + B;
       B = l4d2_ammochance_lifebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "lifebox";
+        current_ammobox = "lifebox";
       }
       A = A + B;
       B = l4d2_ammochance_jockeybox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "jockeybox";
+        current_ammobox = "jockeybox";
       }
       A = A + B;
       B = l4d2_ammochance_smokerbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "smokerbox";
+        current_ammobox = "smokerbox";
       }
       A = A + B;
       B = l4d2_ammochance_knifebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "knifebox";
+        current_ammobox = "knifebox";
       }
       A = A + B;
       B = l4d2_ammochance_barrelbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "barrelbox";
+        current_ammobox = "barrelbox";
       }
       A = A + B;
       B = l4d2_ammochance_airstrikebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "airstrikebox";
+        current_ammobox = "airstrikebox";
       }
       A = A + B;
       B = l4d2_ammochance_meteorbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "meteorbox";
+        current_ammobox = "meteorbox";
       }
       A = A + B;
       B = l4d2_ammochance_hellbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "hellbox";
+        current_ammobox = "hellbox";
       }
       A = A + B;
       B = l4d2_ammochance_respawnbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "respawnbox";
+        current_ammobox = "respawnbox";
       }
       A = A + B;
       B = l4d2_ammochance_lightningbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "lightningbox";
+        current_ammobox = "lightningbox";
       }
       A = A + B;
       B = l4d2_ammochance_cloudbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "cloudbox";
+        current_ammobox = "cloudbox";
       }
       A = A + B;
       B = l4d2_ammochance_bridebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "bridebox";
+        current_ammobox = "bridebox";
       }
       A = A + B;
       B = l4d2_ammochance_failbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "failbox";
+        current_ammobox = "failbox";
       }
       A = A + B;
       B = l4d2_ammochance_pointsbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "pointsbox";
+        current_ammobox = "pointsbox";
       }
       A = A + B;
       B = l4d2_ammochance_bingobox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "bingobox";
+        current_ammobox = "bingobox";
       }
       A = A + B;
       B = l4d2_ammochance_acidbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "acidbox";
+        current_ammobox = "acidbox";
       }
       A = A + B;
       B = l4d2_ammochance_flamebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "flamebox";
+        current_ammobox = "flamebox";
       }
       A = A + B;
       B = l4d2_ammochance_bwbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "bwbox";
+        current_ammobox = "bwbox";
       }
       A = A + B;
       B = l4d2_ammochance_whitebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "whitebox";
+        current_ammobox = "whitebox";
       }
       A = A + B;
       B = l4d2_ammochance_multiplebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "multiplebox";
+        current_ammobox = "multiplebox";
       }
       A = A + B;
       B = l4d2_ammochance_bossbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "bossbox";
+        current_ammobox = "bossbox";
       }
       A = A + B;
       B = l4d2_ammochance_huntingbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "huntingbox";
+        current_ammobox = "huntingbox";
       }
       A = A + B;
       B = l4d2_ammochance_spitterbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "spitterbox";
+        current_ammobox = "spitterbox";
       }
       A = A + B;
       B = l4d2_ammochance_chargerbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "chargerbox";
+        current_ammobox = "chargerbox";
       }
       A = A + B;
       B = l4d2_ammochance_boomerbox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "boomerbox";
+        current_ammobox = "boomerbox";
       }
       A = A + B;
       B = l4d2_ammochance_blazebox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "blazebox";
+        current_ammobox = "blazebox";
       }
       A = A + B;
       B = l4d2_ammochance_tinybox.IntValue * X;
       if (Y >= A && Y < A + B)
       {
-        cvar_l4d2_ammo_nextbox = "tinybox";
+        current_ammobox = "tinybox";
       }
     }
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "nothing", false))
+  else if (StrEqual(current_ammobox, "nothing", false))
   {
-    cvar_l4d2_ammo_nextbox = "random";
+    current_ammobox = "random";
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "firebox", false))
+  else if (StrEqual(current_ammobox, "firebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     FireRndm(position);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "boombox", false))
+  else if (StrEqual(current_ammobox, "boombox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     Boom(position);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "freezebox", false))
+  else if (StrEqual(current_ammobox, "freezebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     if (GetRandomInt(1, 2) == 1)Blizzard(client, position);
     else
     {
@@ -3159,32 +3157,32 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     }
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "laserbox", false))
+  else if (StrEqual(current_ammobox, "laserbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(LASER_SOUND, client, SNDCHAN_AUTO, SNDLEVEL_RAIDSIREN);
     ReplaceAmmoWithLaser(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "medbox", false))
+  else if (StrEqual(current_ammobox, "medbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     MedBox(client);
     Cyl(position);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "witchbox", false))
+  else if (StrEqual(current_ammobox, "witchbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(WITCH_SOUND);
     WitchBox(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "panicbox", false))
+  else if (StrEqual(current_ammobox, "panicbox", false))
   {
-    cvar_l4d2_ammo_nextbox = "random";
+    current_ammobox = "random";
     if (l4d2_plugin_uncommons)
     {
       EmitSoundToAll(PANIC_SOUND);
@@ -3234,18 +3232,18 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     }
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "tankbox", false))
+  else if (StrEqual(current_ammobox, "tankbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(TANK_SOUND);
     CheatCMD(client, "z_spawn_old", "tank auto");
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "bonusbox", false))
+  else if (StrEqual(current_ammobox, "bonusbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(BONUS_SOUND);
     ChangeCvar("l4d2_loot_g_bonus", l4d2_ammo_loot_bonus.IntValue, 0, 10);
     ServerCommand("exec l4d2_supercoop/bonusbox.cfg");
@@ -3254,9 +3252,9 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     RestoreBW();
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "hardbox", false)) {
+  else if (StrEqual(current_ammobox, "hardbox", false)) {
     EmitSoundToAll(HARD_SOUND);
-    cvar_l4d2_ammo_nextbox = "random";
+    current_ammobox = "random";
     g_cvarIsHardBox.SetInt(1, false, false);
     g_iHardLevel = g_iHardLevel + 1;
     char buffer[64];
@@ -3278,10 +3276,10 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     AnnounceOpenBox(client, buffer);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "healbox", false))
+  else if (StrEqual(current_ammobox, "healbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     HealBox(client, false, position);
     #if HEALRESPAWN
     int target = GetRandomClient(false, false, 2);
@@ -3292,35 +3290,35 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     #endif
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "vomitbox", false))
+  else if (StrEqual(current_ammobox, "vomitbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(VOMIT_SOUND, client, SNDCHAN_AUTO, SNDLEVEL_RAIDSIREN);
     Vomit(client, position);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "explosionbox", false))
+  else if (StrEqual(current_ammobox, "explosionbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     CreateExplosion(position);
     Fire(position);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "realismbox", false))
+  else if (StrEqual(current_ammobox, "realismbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(REALISM_SOUND);
     ChangeCvar("l4d2_ammochance_realismbox", 0, 0, 0);
     RealismBox();
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "bloodbox", false))
+  else if (StrEqual(current_ammobox, "bloodbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(BLOOD_SOUND);
     ChangeCvar("l4d2_ammochance_bloodbox", 0, 0, 0);
     g_cvarIsBloodBox.SetInt(1, false, false);
@@ -3328,17 +3326,17 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     ServerCommand("exec l4d2_supercoop/bloodbox.cfg");
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "icebox", false))
+  else if (StrEqual(current_ammobox, "icebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     FreezePlayer(client, position);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "expiredbox", false))
+  else if (StrEqual(current_ammobox, "expiredbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     switch (GetRandomInt(1, 10)) {
       case 5: {
         ForcePlayerSuicide(client);
@@ -3353,127 +3351,127 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     }
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "deathbox", false))
+  else if (StrEqual(current_ammobox, "deathbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(DeathBoxSounds[0]);
     EmitSoundToAll(DeathBoxSounds[2]);
     CreateTimer(6.0, Deathbox);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "jackpotbox", false))
+  else if (StrEqual(current_ammobox, "jackpotbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(POINTS_SOUND);
     CreateTimer(1.0, Jackpotbox);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "jackinthebox", false))
+  else if (StrEqual(current_ammobox, "jackinthebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     CreateTimer(1.0, JackInTheBox);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "matrixbox", false))
+  else if (StrEqual(current_ammobox, "matrixbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     DoMatrix();
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "grenadebox", false))
+  else if (StrEqual(current_ammobox, "grenadebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(ALARM_SOUND);
     Gren(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "luckybox", false))
+  else if (StrEqual(current_ammobox, "luckybox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(ALARM_SOUND);
     lucky(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "weaponbox", false))
+  else if (StrEqual(current_ammobox, "weaponbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(ALARM_SOUND);
     weap(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "lifebox", false))
+  else if (StrEqual(current_ammobox, "lifebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(ALARM_SOUND);
     lifes(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "knifebox", false))
+  else if (StrEqual(current_ammobox, "knifebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(KNIFE_SOUND);
     knifes(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "jockeybox", false))
+  else if (StrEqual(current_ammobox, "jockeybox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     RemoveEdict(upgradeid);
     EmitSoundToAll(JOCKEY_SOUND);
     ServerCommand("exec l4d2_supercoop/jockeybox.cfg");
     ChangeCvar("l4d2_ammochance_jockeybox", 0, 0, 0);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "smokerbox", false))
+  else if (StrEqual(current_ammobox, "smokerbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     RemoveEdict(upgradeid);
     EmitSoundToAll(SMOKER_SOUND);
     ServerCommand("exec l4d2_supercoop/smokerbox.cfg");
     ChangeCvar("l4d2_ammochance_smokerbox", 0, 0, 0);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "barrelbox", false))
+  else if (StrEqual(current_ammobox, "barrelbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     StartBarrel(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "airstrikebox", false))
+  else if (StrEqual(current_ammobox, "airstrikebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     StartAirstrike(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "meteorbox", false))
+  else if (StrEqual(current_ammobox, "meteorbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     StartMeteorFall(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "hellbox", false))
+  else if (StrEqual(current_ammobox, "hellbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     TimedAirStrike(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "respawnbox", false))
+  else if (StrEqual(current_ammobox, "respawnbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     for (int i = 1; i < MaxClients; i++)
     {
       if (IsClientInGame(i) && GetClientTeam(i) == 2 && !IsPlayerAlive(i))
@@ -3483,48 +3481,48 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     }
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "lightningbox", false))
+  else if (StrEqual(current_ammobox, "lightningbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     Lightning(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "cloudbox", false))
+  else if (StrEqual(current_ammobox, "cloudbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     CreateGasCloud(client, g_pos);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "bridebox", false))
+  else if (StrEqual(current_ammobox, "bridebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(BRIDE_SOUND);
     BrideBox(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "failbox", false))
+  else if (StrEqual(current_ammobox, "failbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     FindConVar("l4d2_loot_g_chance_nodrop").SetInt(105, false, false);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "pointsbox", false))
+  else if (StrEqual(current_ammobox, "pointsbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     l4d2_ammochance_pointsbox.SetFloat(0.0);
     EmitSoundToAll(POINTS_SOUND);
     ServerCommand("sm_givepoints #%d 500", GetClientUserId(client));
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "bingobox", false))
+  else if (StrEqual(current_ammobox, "bingobox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(POINTS_SOUND);
     
     int x = 50;
@@ -3564,32 +3562,32 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     ServerCommand("sm_givepoints #%d %d", GetClientUserId(client), x);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "acidbox", false))
+  else if (StrEqual(current_ammobox, "acidbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     CreateAcid(client);
     CreateAcid(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "flamebox", false))
+  else if (StrEqual(current_ammobox, "flamebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     IgnitePlayer(client, 30.0, true);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "bwbox", false))
+  else if (StrEqual(current_ammobox, "bwbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     if (!IsGoingToDie(client))BlackAndWhite(client);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "whitebox", false))
+  else if (StrEqual(current_ammobox, "whitebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     
     for (int i = 1; i <= MaxClients; i++)
     {
@@ -3607,142 +3605,142 @@ public Action onEventUpgradePackUsed(Event event, const char[] name, bool dontBr
     
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "multiplebox", false))
+  else if (StrEqual(current_ammobox, "multiplebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(MULTIPLE_SOUND, client, SNDCHAN_AUTO, SNDLEVEL_RAIDSIREN);
     MultipleBox(client);
     Cyl(position);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "bossbox", false))
+  else if (StrEqual(current_ammobox, "bossbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     RemoveEdict(upgradeid);
     ServerCommand("exec l4d2_supercoop/bossbox.cfg");
     ChangeCvar("l4d2_ammochance_bossbox", 0, 0, 0);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "huntingbox", false))
+  else if (StrEqual(current_ammobox, "huntingbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     RemoveEdict(upgradeid);
     EmitSoundToAll(HUNTER_SOUND);
     ServerCommand("exec l4d2_supercoop/huntingbox.cfg");
     ChangeCvar("l4d2_ammochance_huntingbox", 0, 0, 0);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "spitterbox", false))
+  else if (StrEqual(current_ammobox, "spitterbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     RemoveEdict(upgradeid);
     EmitSoundToAll(SPITTER_SOUND);
     ServerCommand("exec l4d2_supercoop/spitterbox.cfg");
     ChangeCvar("l4d2_ammochance_spitterbox", 0, 0, 0);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "chargerbox", false))
+  else if (StrEqual(current_ammobox, "chargerbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     RemoveEdict(upgradeid);
     EmitSoundToAll(CHARGER_SOUND);
     ServerCommand("exec l4d2_supercoop/chargerbox.cfg");
     ChangeCvar("l4d2_ammochance_chargerbox", 0, 0, 0);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "boomerbox", false))
+  else if (StrEqual(current_ammobox, "boomerbox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     RemoveEdict(upgradeid);
     EmitSoundToAll(BOOMER_SOUND);
     ServerCommand("exec l4d2_supercoop/boomerbox.cfg");
     ChangeCvar("l4d2_ammochance_boomerbox", 0, 0, 0);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "blazebox", false))
+  else if (StrEqual(current_ammobox, "blazebox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     Blaze(client);
     ChangeCvar("l4d2_ammochance_blazebox", 0, 0, 0);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "tinybox", false))
+  else if (StrEqual(current_ammobox, "tinybox", false))
   {
-    AnnounceOpenBox(client, cvar_l4d2_ammo_nextbox);
-    cvar_l4d2_ammo_nextbox = "random";
+    AnnounceOpenBox(client, current_ammobox);
+    current_ammobox = "random";
     EmitSoundToAll(TINY_SOUND);
     g_bIsTinyBox = true;
     ChangeCvar("l4d2_ammochance_tinybox", 0, 0, 0);
     RemoveEdict(upgradeid);
   }
-  else if (StrEqual(cvar_l4d2_ammo_nextbox, "nextbox", false))
+  else if (StrEqual(current_ammobox, "nextbox", false))
   {
     int NextBoxRnd;
     NextBoxRnd = GetRandomInt(1, 32);
     
     switch (NextBoxRnd)
     {
-      case 1:cvar_l4d2_ammo_nextbox = "firebox";
-      case 2:cvar_l4d2_ammo_nextbox = "vomitbox";
-      case 3:cvar_l4d2_ammo_nextbox = "expiredbox";
-      case 4:cvar_l4d2_ammo_nextbox = "laserbox";
-      case 5:cvar_l4d2_ammo_nextbox = "medbox";
-      case 6:cvar_l4d2_ammo_nextbox = "tankbox";
-      case 7:cvar_l4d2_ammo_nextbox = "witchbox";
-      case 8:cvar_l4d2_ammo_nextbox = "panicbox";
-      case 9:cvar_l4d2_ammo_nextbox = "freezebox";
+      case 1:current_ammobox = "firebox";
+      case 2:current_ammobox = "vomitbox";
+      case 3:current_ammobox = "expiredbox";
+      case 4:current_ammobox = "laserbox";
+      case 5:current_ammobox = "medbox";
+      case 6:current_ammobox = "tankbox";
+      case 7:current_ammobox = "witchbox";
+      case 8:current_ammobox = "panicbox";
+      case 9:current_ammobox = "freezebox";
       case 10:
       {
-        if (l4d2_ammochance_bloodbox.IntValue > 0)cvar_l4d2_ammo_nextbox = "bloodbox";
-        else cvar_l4d2_ammo_nextbox = "firebox";
+        if (l4d2_ammochance_bloodbox.IntValue > 0)current_ammobox = "bloodbox";
+        else current_ammobox = "firebox";
       }
       case 11:
       {
-        if (g_iHardLevel < 3)cvar_l4d2_ammo_nextbox = "hardbox";
-        else cvar_l4d2_ammo_nextbox = "bridebox";
+        if (g_iHardLevel < 3)current_ammobox = "hardbox";
+        else current_ammobox = "bridebox";
       }
-      case 12:cvar_l4d2_ammo_nextbox = "healbox";
-      case 13:cvar_l4d2_ammo_nextbox = "tankbox";
-      case 14:cvar_l4d2_ammo_nextbox = "explosionbox";
-      case 15:cvar_l4d2_ammo_nextbox = "multiplebox";
-      case 16:cvar_l4d2_ammo_nextbox = "bingobox";
-      case 17:cvar_l4d2_ammo_nextbox = "firebox";
-      case 18:cvar_l4d2_ammo_nextbox = "vomitbox";
+      case 12:current_ammobox = "healbox";
+      case 13:current_ammobox = "tankbox";
+      case 14:current_ammobox = "explosionbox";
+      case 15:current_ammobox = "multiplebox";
+      case 16:current_ammobox = "bingobox";
+      case 17:current_ammobox = "firebox";
+      case 18:current_ammobox = "vomitbox";
       case 19:
       {
-        if (l4d2_ammochance_realismbox.IntValue > 0)cvar_l4d2_ammo_nextbox = "realismbox";
-        else cvar_l4d2_ammo_nextbox = "meteorbox";
+        if (l4d2_ammochance_realismbox.IntValue > 0)current_ammobox = "realismbox";
+        else current_ammobox = "meteorbox";
       }
-      case 20:cvar_l4d2_ammo_nextbox = "medbox";
-      case 21:cvar_l4d2_ammo_nextbox = "laserbox";
-      case 22:cvar_l4d2_ammo_nextbox = "witchbox";
-      case 23:cvar_l4d2_ammo_nextbox = "panicbox";
-      case 24:cvar_l4d2_ammo_nextbox = "freezebox";
-      case 25:cvar_l4d2_ammo_nextbox = "bridebox";
-      case 26:cvar_l4d2_ammo_nextbox = "healbox";
+      case 20:current_ammobox = "medbox";
+      case 21:current_ammobox = "laserbox";
+      case 22:current_ammobox = "witchbox";
+      case 23:current_ammobox = "panicbox";
+      case 24:current_ammobox = "freezebox";
+      case 25:current_ammobox = "bridebox";
+      case 26:current_ammobox = "healbox";
       case 27:
       {
-        if (l4d2_ammochance_bossbox.IntValue > 0)cvar_l4d2_ammo_nextbox = "bossbox";
-        else cvar_l4d2_ammo_nextbox = "panicbox";
+        if (l4d2_ammochance_bossbox.IntValue > 0)current_ammobox = "bossbox";
+        else current_ammobox = "panicbox";
       }
-      case 28:cvar_l4d2_ammo_nextbox = "multiplebox";
-      case 29:cvar_l4d2_ammo_nextbox = "barrelbox";
-      case 30:cvar_l4d2_ammo_nextbox = "lifebox";
-      case 31:cvar_l4d2_ammo_nextbox = "bingobox";
-      case 32:cvar_l4d2_ammo_nextbox = "meteorbox";
+      case 28:current_ammobox = "multiplebox";
+      case 29:current_ammobox = "barrelbox";
+      case 30:current_ammobox = "lifebox";
+      case 31:current_ammobox = "bingobox";
+      case 32:current_ammobox = "meteorbox";
     }
     char buffer[64];
-    Format(buffer, 64, "nextbox (%s)!", cvar_l4d2_ammo_nextbox);
+    Format(buffer, 64, "nextbox (%s)!", current_ammobox);
     AnnounceOpenBox(client, buffer);
     RemoveEdict(upgradeid);
   }
   else
   {
-    cvar_l4d2_ammo_nextbox = "random";
+    current_ammobox = "random";
   }
-  l4d2_ammo_nextbox.SetString(cvar_l4d2_ammo_nextbox);
+  l4d2_ammo_nextbox.SetString(current_ammobox);
 }
 
 int GetSpecialAmmoInPlayerGun(int client)
@@ -4985,7 +4983,7 @@ public Action JackInTheBox(Handle timer)
   return Plugin_Stop;
 }
 public Action YouWithLucky(Handle timer, any client) {
-  int random = GetRandomInt(1, 5);
+  int random = GetRandomInt(0, 4);
   switch (random) {
     case 1, 2: {
       EmitSoundToClient(client, JackInTheBoxSounds[random]);
@@ -7151,13 +7149,15 @@ bool IsNotFalling(int client)
   return GetEntProp(client, Prop_Send, "m_isHangingFromLedge") == 0 && GetEntProp(client, Prop_Send, "m_isFallingFromLedge") == 0;
 }
 
-public void AnnounceOpenBox(int client, char[] box_name) {
+public void AnnounceOpenBox(int client, const char[] box_name) {
   if(!StrEqual("nothing", box_name)) {
     for(int i = 1; i < MaxClients; i++) {
-      if(client != i) {
-        CPrintToChat(i, "{blue}%N\x01 opened a {blue}%s", client, box_name);
-      } else {
-        CPrintToChat(i, "{blue}You\x01 have opened a {blue}%s", client, box_name);
+      if(IsClientInGame(i) && !IsFakeClient(i)) {
+        if(client != i) {
+          CPrintToChat(i, "{blue}%N\x01 opened a {blue}%s", client, box_name);
+        } else {
+          CPrintToChat(i, "{blue}You\x01 have opened a {blue}%s", box_name);
+        }
       }
     }
   }
